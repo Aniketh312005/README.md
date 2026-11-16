@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXFIT Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+  <header>
+    <h1>NEXFIT <span>AI Health Dashboard</span></h1>
+    <div class="conn">
+      <input id="ip" placeholder="ESP IP e.g. 192.168.0.92">
+      <button id="liveBtn">Start Live</button>
+      <label class="btn">Upload CSV<input id="file" type="file" accept=".csv" hidden></label>
+      <span id="status" class="pill off">Not connected</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Steps</h2>
+      <div class="big"><span id="steps">0</span><small> / 10,000</small></div>
+      <div class="bar"><div id="stepBar"></div></div>
+      <p>Calories burned (est.): <b id="cal">0</b> kcal</p>
+    </section>
+
+    <section class="card">
+      <h2>Heart Rate</h2>
+      <div class="big"><span id="hr">--</span><small> BPM</small></div>
+      <p id="hrNote" class="muted">Place finger on sensor</p>
+      <canvas id="hrChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>SpO2</h2>
+      <div class="big"><span id="spo2">--</span><small> %</small></div>
+      <p id="spNote" class="muted">Place finger on sensor</p>
+      <canvas id="spChart"></canvas>
+    </section>
+
+    <section class="card wide">
+      <h2>AI Predictions &amp; Daily Summary</h2>
+      <div class="stats">
+        <div><small>Avg HR</small><b id="avgHr">--</b></div>
+        <div><small>Min / Max HR</small><b id="rngHr">--</b></div>
+        <div><small>Low SpO2 events</small><b id="lowEv">0</b></div>
+        <div><small>Abnormal HR readings</small><b id="abnHr">0</b></div>
+        <div><small>Future risk</small><b id="risk" class="risk">--</b></div>
+      </div>
+      <h3>Insights</h3>
+      <ul id="insights"></ul>
+      <h3>Recommendations</h3>
+      <ul id="recs"></ul>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
